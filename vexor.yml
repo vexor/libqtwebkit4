@@ -1,0 +1,9 @@
+language: generic
+
+before_script:
+- make deps
+
+script:
+- make
+- tar -vcf - *.deb | ssh ${DEPLOY_HOST} push files.vexor.io
+

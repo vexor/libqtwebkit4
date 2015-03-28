@@ -1,0 +1,15 @@
+--- a/qtwebkit-source-2.3.2/debian/rules	2015-03-28 18:04:07.135578000 +0000
++++ b/qtwebkit-source-2.3.2/debian/rules	2015-03-28 18:04:54.698578000 +0000
+@@ -45,11 +45,11 @@
+ #disable forcing SSE2 on all other platforms
+ #http://www.mentby.com/Group/webkit-qt-list/qtwebkit-231-tagged.html
+ ifneq (,$(filter arm64 powerpc ppc64el,$(DEB_HOST_ARCH)))
+-	./Tools/Scripts/build-webkit --qt DEFINES+=ENABLE_JIT=0 DEFINES+=ENABLE_YARR_JIT=0 DEFINES+=ENABLE_ASSEMBLER=0
++	./Tools/Scripts/build-webkit --qt CONFIG+=silent DEFINES+=ENABLE_VIDEO=0 DEFINES-=ENABLE_VIDEO=1 DEFINES+=ENABLE_JIT=0 DEFINES+=ENABLE_YARR_JIT=0 DEFINES+=ENABLE_ASSEMBLER=0
+ else ifeq ($(DEB_HOST_ARCH),armhf)
+-	./Tools/Scripts/build-webkit --qt DEFINES+=ENABLE_JIT=0 DEFINES+=ENABLE_YARR_JIT=0 DEFINES+=ENABLE_ASSEMBLER=0 DEFINES+=WTF_USE_3D_GRAPHICS=0
++	./Tools/Scripts/build-webkit --qt CONFIG+=silent DEFINES+=ENABLE_VIDEO=0 DEFINES-=ENABLE_VIDEO=1 DEFINES+=ENABLE_JIT=0 DEFINES+=ENABLE_YARR_JIT=0 DEFINES+=ENABLE_ASSEMBLER=0 DEFINES+=WTF_USE_3D_GRAPHICS=0
+ else
+-	./Tools/Scripts/build-webkit --qt --no-force-sse2
++	./Tools/Scripts/build-webkit --qt CONFIG+=silent DEFINES+=ENABLE_VIDEO=0 DEFINES-=ENABLE_VIDEO=1 --no-force-sse2
+ endif
